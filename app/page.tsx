@@ -5,8 +5,8 @@ import FeaturedPost from '@/components/FeaturedPost'
 import CategoryFilter from '@/components/CategoryFilter'
 
 async function getPosts(): Promise<Post[]> {
-  return safeCosmicCall(() =>
-    cosmic.objects
+  return await safeCosmicCall(async () =>
+    await cosmic.objects
       .find({ type: 'posts' })
       .props(['id', 'title', 'slug', 'metadata'])
       .depth(1)
@@ -14,8 +14,8 @@ async function getPosts(): Promise<Post[]> {
 }
 
 async function getCategories(): Promise<Category[]> {
-  return safeCosmicCall(() =>
-    cosmic.objects
+  return await safeCosmicCall(async () =>
+    await cosmic.objects
       .find({ type: 'categories' })
       .props(['id', 'title', 'slug', 'metadata'])
   );

@@ -80,4 +80,4 @@ export function isCategory(obj: CosmicObject): obj is Category {
 
 // Utility types
 export type PostStatus = 'published' | 'draft';
-export type OptionalMetadata<T> = Partial<T['metadata']>;
+export type OptionalMetadata<T extends CosmicObject> = Partial<T['metadata']>;

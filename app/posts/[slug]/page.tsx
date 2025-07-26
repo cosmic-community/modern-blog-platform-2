@@ -12,8 +12,8 @@ interface PostPageProps {
 }
 
 async function getPost(slug: string): Promise<Post | null> {
-  return safeCosmicCallSingle(() =>
-    cosmic.objects
+  return await safeCosmicCallSingle(async () =>
+    await cosmic.objects
       .findOne({
         type: 'posts',
         slug

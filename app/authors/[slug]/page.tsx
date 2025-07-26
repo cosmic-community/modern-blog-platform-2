@@ -11,8 +11,8 @@ interface AuthorPageProps {
 }
 
 async function getAuthor(slug: string): Promise<Author | null> {
-  return safeCosmicCallSingle(() =>
-    cosmic.objects
+  return await safeCosmicCallSingle(async () =>
+    await cosmic.objects
       .findOne({
         type: 'authors',
         slug
@@ -22,8 +22,8 @@ async function getAuthor(slug: string): Promise<Author | null> {
 }
 
 async function getPostsByAuthor(authorId: string): Promise<Post[]> {
-  return safeCosmicCall(() =>
-    cosmic.objects
+  return await safeCosmicCall(async () =>
+    await cosmic.objects
       .find({
         type: 'posts',
         'metadata.author': authorId

@@ -11,8 +11,8 @@ interface CategoryPageProps {
 }
 
 async function getCategory(slug: string): Promise<Category | null> {
-  return safeCosmicCallSingle(() =>
-    cosmic.objects
+  return await safeCosmicCallSingle(async () =>
+    await cosmic.objects
       .findOne({
         type: 'categories',
         slug
@@ -22,8 +22,8 @@ async function getCategory(slug: string): Promise<Category | null> {
 }
 
 async function getPostsByCategory(categoryId: string): Promise<Post[]> {
-  return safeCosmicCall(() =>
-    cosmic.objects
+  return await safeCosmicCall(async () =>
+    await cosmic.objects
       .find({
         type: 'posts',
         'metadata.category': categoryId
